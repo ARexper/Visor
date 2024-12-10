@@ -29,19 +29,45 @@
             z-index: 10;
             pointer-events: none; /* Evita interferir con el visor */
             object-fit: cover; /* Asegura que la imagen se ajuste correctamente */
+            transition: opacity 0.5s ease; /* Transición suave al desaparecer */
+        }
+        .hidden {
+            opacity: 0; /* Hace que la imagen sea invisible */
+            pointer-events: none; /* Evita que interfiera cuando está oculta */
         }
     </style>
 </head>
 <body>
     <div class="container">
         <!-- Visor Web AR -->
-        <iframe src="https://mywebar.com/p/Project_3_acdrnbmg16" 
+        <iframe id="webar-iframe" 
+                src="https://mywebar.com/p/Project_3_acdrnbmg16" 
                 allow="camera;gyroscope;accelerometer;magnetometer;xr-spatial-tracking;microphone;">
         </iframe>
         <!-- Imagen que ocupa la mitad superior de la pantalla -->
-        <img src="https://www.dropbox.com/scl/fi/0t04le1x56hybl8doz5st/LOGO-CENTRO-DIGITAL-DE-DISE-O-03.jpg?rlkey=q34aes4jmp10bzi6oavvealh7&raw=1" 
+        <img id="logo-overlay" 
+             src="https://www.dropbox.com/scl/fi/0t04le1x56hybl8doz5st/LOGO-CENTRO-DIGITAL-DE-DISE-O-03.jpg?rlkey=q34aes4jmp10bzi6oavvealh7&raw=1" 
              alt="Logo personalizado" 
              class="logo-overlay">
     </div>
+
+    <script>
+        // Detectar clic en el iframe
+        const iframe = document.getElementById('webar-iframe');
+        const logoOverlay = document.getElementById('logo-overlay');
+
+        iframe.addEventListener('load', () => {
+            const iframeDocument = iframe.contentWindow.document;
+
+            // Escuchar clic en el botón "Launch" dentro del iframe
+            iframeDocument.addEventListener('click', (event) => {
+                const target = event.target;
+                if (target && target.textContent.trim() === 'Launch') {
+                    // Ocultar la imagen superpuesta
+                    logoOverlay.classList.add('hidden');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
