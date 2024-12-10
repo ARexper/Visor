@@ -22,12 +22,13 @@
         }
         .logo-overlay {
             position: absolute;
-            top: 20px; /* Ajusta la posición vertical */
-            left: 50%; /* Centra horizontalmente */
-            transform: translateX(-50%);
-            width: 200px; /* Ajusta el tamaño del logo */
+            top: 0; /* La imagen empieza desde la parte superior */
+            left: 0;
+            width: 100%; /* Ocupará todo el ancho de la pantalla */
+            height: 50%; /* Ocupará la mitad de la pantalla */
             z-index: 10;
             pointer-events: none; /* Evita interferir con el visor */
+            object-fit: cover; /* Asegura que la imagen se ajuste correctamente */
         }
     </style>
 </head>
@@ -37,7 +38,7 @@
         <iframe src="https://mywebar.com/p/Project_3_acdrnbmg16" 
                 allow="camera;gyroscope;accelerometer;magnetometer;xr-spatial-tracking;microphone;">
         </iframe>
-        <!-- Imagen que cubre la marca -->
+        <!-- Imagen que ocupa la mitad superior de la pantalla -->
         <img src="https://www.dropbox.com/scl/fi/0t04le1x56hybl8doz5st/LOGO-CENTRO-DIGITAL-DE-DISE-O-03.jpg?rlkey=q34aes4jmp10bzi6oavvealh7&raw=1" 
              alt="Logo personalizado" 
              class="logo-overlay">
