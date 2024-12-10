@@ -3,65 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visor Web AR</title>
+    <title>Visor AR Personalizado</title>
     <style>
         body {
             margin: 0;
             padding: 0;
+            overflow: hidden;
         }
-        .container {
-            position: relative;
+        .header {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            height: 100vh;
+            background: #000;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            z-index: 100;
+            transition: transform 0.3s ease;
+        }
+        .header.hidden {
+            transform: translateY(-100%);
         }
         iframe {
             display: block;
             width: 100%;
-            height: 100%;
+            height: 100vh;
             border: none;
-        }
-        .logo-overlay {
-            position: absolute;
-            top: 0; /* La imagen empieza desde la parte superior */
-            left: 0;
-            width: 100%; /* Ocupará todo el ancho de la pantalla */
-            height: 50%; /* Ocupará la mitad de la pantalla */
-            z-index: 10;
-            pointer-events: none; /* Evita interferir con el visor */
-            object-fit: cover; /* Asegura que la imagen se ajuste correctamente */
-            transition: opacity 0.5s ease; /* Transición suave al desaparecer */
-        }
-        .hidden {
-            opacity: 0; /* Hace que la imagen sea invisible */
-            pointer-events: none; /* Evita que interfiera cuando está oculta */
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Visor Web AR -->
-        <iframe id="webar-iframe" 
-                src="https://mywebar.com/p/Project_3_acdrnbmg16" 
-                allow="camera;gyroscope;accelerometer;magnetometer;xr-spatial-tracking;microphone;">
-        </iframe>
-        <!-- Imagen que ocupa la mitad superior de la pantalla -->
-        <img id="logo-overlay" 
-             src="https://www.dropbox.com/scl/fi/0t04le1x56hybl8doz5st/LOGO-CENTRO-DIGITAL-DE-DISE-O-03.jpg?rlkey=q34aes4jmp10bzi6oavvealh7&raw=1" 
-             alt="Logo personalizado" 
-             class="logo-overlay">
+    <div class="header" id="header">
+        <h1>Mi Marca</h1>
+        <p>Explora este modelo en AR</p>
     </div>
+    <iframe 
+        src="https://mywebar.com/p/Project_3_acdrnbmg16" 
+        id="arViewer"
+        allow="camera;gyroscope;accelerometer;magnetometer;xr-spatial-tracking;microphone;">
+    </iframe>
 
     <script>
-        // Detectar carga del iframe
-        const iframe = document.getElementById('webar-iframe');
-        const logoOverlay = document.getElementById('logo-overlay');
+        // Obtener referencias a los elementos
+        const header = document.getElementById('header');
+        const iframe = document.getElementById('arViewer');
 
+        // Escuchar eventos de interacción en el iframe
         iframe.addEventListener('load', () => {
-            // Esperar unos segundos para que el contenido cargue completamente
-            setTimeout(() => {
-                // Ocultar la imagen superpuesta automáticamente
-                logoOverlay.classList.add('hidden');
-            }, 2000); // Cambia 2000 (2 segundos) al tiempo deseado en milisegundos
+            const iframeWindow = iframe.contentWindow;
+
+            // Monitorear clics dentro del iframe
+            iframeWindow.document.addEventListener('click', (event) => {
+                const button = iframeWindow.document.querySelector('button'); // Cambiar si el botón "Launch" tiene otro selector
+                if (button && event.target === button) {
+                    // Ocultar la cabecera
+                    header.classList.add('hidden');
+                }
+            });
         });
     </script>
 </body>
