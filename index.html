@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visor Web AR</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+        }
+        iframe {
+            display: block;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .logo-overlay {
+            position: absolute;
+            top: 20px; /* Ajusta la posición vertical */
+            left: 50%; /* Centra horizontalmente */
+            transform: translateX(-50%);
+            width: 200px; /* Ajusta el tamaño del logo */
+            z-index: 10;
+            pointer-events: none; /* Evita interferir con el visor */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Visor Web AR -->
+        <iframe src="https://mywebar.com/p/Project_3_acdrnbmg16" 
+                allow="camera;gyroscope;accelerometer;magnetometer;xr-spatial-tracking;microphone;">
+        </iframe>
+        <!-- Imagen que cubre la marca -->
+        <img src="https://www.dropbox.com/scl/fi/0t04le1x56hybl8doz5st/LOGO-CENTRO-DIGITAL-DE-DISE-O-03.jpg?rlkey=q34aes4jmp10bzi6oavvealh7&raw=1" 
+             alt="Logo personalizado" 
+             class="logo-overlay">
+    </div>
+</body>
+</html>
