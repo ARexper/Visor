@@ -45,23 +45,10 @@
     </iframe>
 
     <script>
-        // Obtener referencias a los elementos
-        const header = document.getElementById('header');
-        const iframe = document.getElementById('arViewer');
-
-        // Escuchar eventos de interacción en el iframe
-        iframe.addEventListener('load', () => {
-            const iframeWindow = iframe.contentWindow;
-
-            // Monitorear clics dentro del iframe
-            iframeWindow.document.addEventListener('click', (event) => {
-                const button = iframeWindow.document.querySelector('button'); // Cambiar si el botón "Launch" tiene otro selector
-                if (button && event.target === button) {
-                    // Ocultar la cabecera
-                    header.classList.add('hidden');
-                }
-            });
-        });
+        // Ocultar la cabecera después de 5 segundos (ajusta el tiempo según sea necesario)
+        setTimeout(function() {
+            document.getElementById('header').classList.add('hidden');
+        }, 5000);  // 5000 milisegundos = 5 segundos
     </script>
 </body>
 </html>
