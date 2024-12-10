@@ -52,21 +52,16 @@
     </div>
 
     <script>
-        // Detectar clic en el iframe
+        // Detectar carga del iframe
         const iframe = document.getElementById('webar-iframe');
         const logoOverlay = document.getElementById('logo-overlay');
 
         iframe.addEventListener('load', () => {
-            const iframeDocument = iframe.contentWindow.document;
-
-            // Escuchar clic en el botón "Launch" dentro del iframe
-            iframeDocument.addEventListener('click', (event) => {
-                const target = event.target;
-                if (target && target.textContent.trim() === 'Launch') {
-                    // Ocultar la imagen superpuesta
-                    logoOverlay.classList.add('hidden');
-                }
-            });
+            // Esperar unos segundos para que el contenido cargue completamente
+            setTimeout(() => {
+                // Ocultar la imagen superpuesta automáticamente
+                logoOverlay.classList.add('hidden');
+            }, 2000); // Cambia 2000 (2 segundos) al tiempo deseado en milisegundos
         });
     </script>
 </body>
